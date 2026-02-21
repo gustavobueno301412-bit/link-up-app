@@ -173,6 +173,8 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
    
    function configurarBanners() {
     const bannerWrapper = document.getElementById('bannerApp');
+    if (!bannerWrapper) return;
+   
     let htmlBanners = '';
     let count = 0;
 
@@ -180,13 +182,19 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
         const imgBanner = (row.c[2] && row.c[2].v) ? row.c[2].v : '';
         let linkBanner = (row.c[1] && row.c[1].v) ? row.c[1].v : '#';
 
-        // TRAVA DA GAZETA: Se for o primeiro banner, usa o link direto
+        // TRAVA DA GAZETA: Garante o link direto no primeiro banner
         if (i === 0) {
             linkBanner = "https://www.agazetarm.com.br/";
+        } else if (linkBanner !== '#' && !linkBanner.startsWith('http')) {
+            // Se o link da planilha não tiver http, a gente coloca para evitar o 404
+            linkBanner = 'https://' + linkBanner;
         }
 
         if (imgBanner && imgBanner.includes('http')) {
-            htmlBanners += `<a href="${linkBanner}" target="_blank" class="banner-link"><img src="${imgBanner}" class="banner-img"></a>`;
+            // Usei o formato com "+" para não ter erro de sinal ou de interpretação
+            htmlBanners += '<a href="' + linkBanner + '" target="_blank" class="banner-link">' +
+                           '<img src="' + imgBanner + '" class="banner-img">' +
+                           '</a>';
             count++;
         }
     });
@@ -197,7 +205,8 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
         let index = 0;
         setInterval(() => {
             index = (index + 1) % count;
-            bannerWrapper.style.transform = `translateX(${index * -100}%)`;
+            // Ajuste do movimento do banner também com formato seguro
+            bannerWrapper.style.transform = 'translateX(' + (index * -100) + '%)';
         }, 4000);
     }
 }
