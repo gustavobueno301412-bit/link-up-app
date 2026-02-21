@@ -170,27 +170,40 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
         } catch (error) { console.error("Erro:", error); }
     }
 
-    function configurarBanners() {
-        const bannerWrapper = document.getElementById('bannerApp');
-        let htmlBanners = '';
-        let count = 0;
-        todosOsProdutos.forEach((row) => {
-            const imgBanner = (row.c[2] && row.c[2].v) ? row.c[2].v : '';
-            const linkBanner = (row.c[1] && row.c[1].v) ? row.c[1].v : '#';
-            if (imgBanner && imgBanner.includes('http')) {
-                htmlBanners += `<a href="${linkBanner}" target="_blank" class="banner-link"><img src="${imgBanner}" class="banner-img"></a>`;
-                count++;
-            }
-        });
-        bannerWrapper.innerHTML = htmlBanners;
-        if (count > 1) {
-            let index = 0;
-            setInterval(() => {
-                index = (index + 1) % count;
-                bannerWrapper.style.transform = `translateX(${index * -100}%)`;
-            }, 4000);
+   
+   function configurarBanners() {
+    const bannerWrapper = document.getElementById('bannerApp');
+    let htmlBanners = '';
+    let count = 0;
+
+    todosOsProdutos.forEach((row, i) => {
+        const imgBanner = (row.c[2] && row.c[2].v) ? row.c[2].v : '';
+        let linkBanner = (row.c[1] && row.c[1].v) ? row.c[1].v : '#';
+
+        // TRAVA DA GAZETA: Se for o primeiro banner, usa o link direto
+        if (i === 0) {
+            linkBanner = "https://www.agazetarm.com.br/";
         }
+
+        if (imgBanner && imgBanner.includes('http')) {
+            htmlBanners += `<a href="${linkBanner}" target="_blank" class="banner-link"><img src="${imgBanner}" class="banner-img"></a>`;
+            count++;
+        }
+    });
+
+    bannerWrapper.innerHTML = htmlBanners;
+
+    if (count > 1) {
+        let index = 0;
+        setInterval(() => {
+            index = (index + 1) % count;
+            bannerWrapper.style.transform = `translateX(${index * -100}%)`;
+        }, 4000);
     }
+}
+
+ 
+
 
     function mostrarProdutos(termo = '') {
         let html = '';
