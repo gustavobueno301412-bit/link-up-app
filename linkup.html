@@ -192,7 +192,7 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
 
         if (imgBanner && imgBanner.includes('http')) {
             // Usei o formato com "+" para não ter erro de sinal ou de interpretação
-            htmlBanners += '<a href="' + linkBanner + '" target="_blank" class="banner-link">' +
+            htmlBanners += '<a href="' + linkBanner.trim() + '" class="banner-link">' +
                            '<img src="' + imgBanner + '" class="banner-img">' +
                            '</a>';
             count++;
