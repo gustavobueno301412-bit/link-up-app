@@ -83,8 +83,8 @@
         <div class="banner-wrapper" id="bannerApp"></div>
     </div>
     <div class="categorias" id="grupoCategorias">
-        <button class="cat-btn active" onclick="filtrar('todos', this)">Todos ✨</button>
-        <button class="cat-btn" onclick="filtrar('em-alta', this)">Em alta 🔥</button>
+        <button class="cat-btn active" onclick="filtrar('todos', this)"> ✨ Todos ✨</button>
+        <button class="cat-btn" onclick="filtrar('em-destaque', this)">🔥 Em Destaque 🔥</button>
         <button class="cat-btn" onclick="filtrar('transporte', this)">🚕 Transporte 🚚</button>
         <button class="cat-btn" onclick="filtrar('manutenção', this)">🔨 Manutenção 🧹</button>
         <button class="cat-btn" onclick="filtrar('alimentação', this)">👩🏻‍🍳 Alimentação 🍰</button>
@@ -221,7 +221,7 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
                 else if(tipo.includes('whatsapp')) { btnClass = 'btn-whatsapp'; btnTexto = `📞 WHATSAPP 📱`; }
                
                 html += `<div class="produto-card">
-                    ${destaque === 'sim' ? '<div class="selo-destaque">MAIS VENDIDO 🔥</div>' : ''}
+                    ${destaque === 'sim' ? '<div class="selo-destaque">EM DESTAQUE 🔥</div>' : ''}
                     <button class="btn-ws-card" onclick="compartilharProduto('${nome}', '${link}')"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></button>
                     <img src="${foto}" class="img-produto" onerror="this.src='https://via.placeholder.com/150'">
                     <div class="produto-cat-label">${categoria}</div>
