@@ -241,47 +241,64 @@
             const response = await fetch(url);
             const text = await response.text();
             const jsonData = JSON.parse(text.substring(47).slice(0, -2));
-            todosOsProdutos = jsonData.table.rows;
-            produtosEmbaralhados = [...todosOsProdutos].sort(() => Math.random() - 0.5);
+            let dadosDaPlanilha = jsonData.table.rows;
+
+            if (dadosDaPlanilha && dadosDaPlanilha.length > 1) {
+                let vip = dadosDaPlanilha[0]; // Trava a Linha 2 da Planilha
+                let resto = dadosDaPlanilha.slice(1); // Pega o resto
+                
+                // Embaralha o resto (Sorteio)
+                resto.sort(() => Math.random() - 0.5);
+                
+                // Monta a lista oficial: VIP primeiro, resto sorteado
+                produtosEmbaralhados = [vip, ...resto];
+            } else {
+                produtosEmbaralhados = [...dadosDaPlanilha];
+            }
+
+            // Agora chama as funções usando a lista nova
             configurarBanners();
             mostrarProdutos();
         } catch (error) { console.error("Erro:", error); }
     }
-
+    
+    
    function configurarBanners() {
-    const bannerWrapper = document.getElementById('bannerApp');
-    if (!bannerWrapper) return;
-    let htmlBanners = '';
-    let count = 0;
+        const bannerWrapper = document.getElementById('bannerApp');
+        if (!bannerWrapper) return;
+        let htmlBanners = '';
+        let count = 0;
 
-    todosOsProdutos.forEach((row, i) => {
-        const imgBanner = (row.c[2] && row.c[2].v) ? row.c[2].v : '';
-        let linkBanner = (row.c[1] && row.c[1].v) ? row.c[1].v.toString().trim() : '#';
+        // MUDANÇA: Aqui troquei para 'produtosEmbaralhados' para o banner também sortear
+        produtosEmbaralhados.forEach((row, i) => {
+            const imgBanner = (row.c[2] && row.c[2].v) ? row.c[2].v : '';
+            let linkBanner = (row.c[1] && row.c[1].v) ? row.c[1].v.toString().trim() : '#';
 
-        // Arruma o link para o celular não se perder
-        if (linkBanner !== '#' && !linkBanner.startsWith('http')) {
-            linkBanner = 'https://' + linkBanner;
+            if (linkBanner !== '#' && !linkBanner.startsWith('http')) {
+                linkBanner = 'https://' + linkBanner;
+            }
+
+            if (imgBanner && imgBanner.includes('http')) {
+                htmlBanners += `<div onclick="window.top.location.href='${linkBanner}'" style="min-width: 100%; height: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                                    <img src="${imgBanner}" class="banner-img" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                </div>`;
+                count++;
+            }
+        });
+
+        bannerWrapper.innerHTML = htmlBanners;
+        
+        if (count > 1) {
+            let index = 0;
+            // Limpa qualquer intervalo antigo para não dar bug
+            if (window.bannerInterval) clearInterval(window.bannerInterval);
+            
+            window.bannerInterval = setInterval(() => {
+                index = (index + 1) % count;
+                bannerWrapper.style.transform = 'translateX(' + (index * -100) + '%)';
+            }, 4000);
         }
-
-        if (imgBanner && imgBanner.includes('http')) {
-            // AQUI ESTÁ A MUDANÇA: Usando onclick em vez de <a> para abrir de qualquer jeito
-            htmlBanners += `<div onclick="window.top.location.href='${linkBanner}'" style="min-width: 100%; height: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-                                <img src="${imgBanner}" class="banner-img" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                            </div>`;
-            count++;
-        }
-    });
-
-    bannerWrapper.innerHTML = htmlBanners;
-   
-    if (count > 1) {
-        let index = 0;
-        setInterval(() => {
-            index = (index + 1) % count;
-            bannerWrapper.style.transform = 'translateX(' + (index * -100) + '%)';
-        }, 4000);
     }
-}
 
 
     function mostrarProdutos(termo = '') {
@@ -404,4 +421,5 @@
 
 </body>
 </html>
+
 
