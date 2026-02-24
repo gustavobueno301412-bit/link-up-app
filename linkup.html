@@ -236,7 +236,7 @@
 
     function voltarAoTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
 
-    async function carregarDados() {
+  async function carregarDados() {
         try {
             const response = await fetch(url);
             const text = await response.text();
@@ -244,35 +244,38 @@
             let dadosDaPlanilha = jsonData.table.rows;
 
             if (dadosDaPlanilha && dadosDaPlanilha.length > 1) {
-                let vip = dadosDaPlanilha[0]; // Trava a Linha 2 da Planilha
-                let resto = dadosDaPlanilha.slice(1); // Pega o resto
-                
-                // Embaralha o resto (Sorteio)
+                // REGRA: Isola o primeiro item (Linha 2 da Planilha)
+                let itemFixo = dadosDaPlanilha[0];
+               
+                // Pega todo o resto da lista (do segundo item em diante)
+                let resto = dadosDaPlanilha.slice(1);
+               
+                // Embaralha apenas o resto
                 resto.sort(() => Math.random() - 0.5);
-                
-                // Monta a lista oficial: VIP primeiro, resto sorteado
-                produtosEmbaralhados = [vip, ...resto];
+               
+                // Junta novamente: O fixo sempre no topo (índice 0), e o resto sorteado
+                produtosEmbaralhados = [itemFixo, ...resto];
             } else {
                 produtosEmbaralhados = [...dadosDaPlanilha];
             }
 
-            // Agora chama as funções usando a lista nova
+            // Chama as funções com a nova lista organizada
             configurarBanners();
             mostrarProdutos();
         } catch (error) { console.error("Erro:", error); }
     }
-    
-    
-   function configurarBanners() {
+   
+    function configurarBanners() {
         const bannerWrapper = document.getElementById('bannerApp');
         if (!bannerWrapper) return;
         let htmlBanners = '';
         let count = 0;
 
-        // MUDANÇA: Aqui troquei para 'produtosEmbaralhados' para o banner também sortear
+        // Agora o Banner segue a mesma lógica da lista (Fixo primeiro, resto randômico)
         produtosEmbaralhados.forEach((row, i) => {
-            const imgBanner = (row.c[2] && row.c[2].v) ? row.c[2].v : '';
-            let linkBanner = (row.c[1] && row.c[1].v) ? row.c[1].v.toString().trim() : '#';
+            // Verifica se existe a célula e o valor da imagem na coluna C (índice 2)
+            const imgBanner = (row.c && row.c[2] && row.c[2].v) ? row.c[2].v : '';
+            let linkBanner = (row.c && row.c[1] && row.c[1].v) ? row.c[1].v.toString().trim() : '#';
 
             if (linkBanner !== '#' && !linkBanner.startsWith('http')) {
                 linkBanner = 'https://' + linkBanner;
@@ -287,12 +290,11 @@
         });
 
         bannerWrapper.innerHTML = htmlBanners;
-        
+       
         if (count > 1) {
             let index = 0;
-            // Limpa qualquer intervalo antigo para não dar bug
             if (window.bannerInterval) clearInterval(window.bannerInterval);
-            
+           
             window.bannerInterval = setInterval(() => {
                 index = (index + 1) % count;
                 bannerWrapper.style.transform = 'translateX(' + (index * -100) + '%)';
