@@ -5,6 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link Up App Autônomos</title>
     <style>
+        /* --- ADIÇÃO: Mãozinha animada apenas no primeiro card --- */
+.vitrine .produto-card:first-child::after {
+    content: "👆";
+    position: absolute;
+    top: 95px;
+    right: -10px;
+    font-size: 30px;
+    background: white;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    animation: cliqueAnim 1.5s infinite;
+    z-index: 20;
+}
+
+@keyframes cliqueAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* --- ADIÇÃO: Estilo do Modal de Detalhes --- */
+.modal-detalhes-linkup {
+    display: none;
+    position: fixed;
+    z-index: 11000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-detalhes-content {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 25px;
+    border-radius: 25px;
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.fechar-detalhes {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+}
+
+.btn-zap-modal {
+    background: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 18px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+        
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #c6d4e1; scroll-behavior: smooth; }
         header { background: #44749d; padding: 25px 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .titulo-app { color: #ffffff; font-size: 1.5rem; font-weight: bold; margin: 0; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
@@ -319,7 +393,7 @@
 
             if ((categoriaAtual === 'todos' || categoria.toLowerCase().trim() === categoriaAtual || (categoriaAtual === 'em-destaque' && destaque === 'sim')) &&
                 (nome.toLowerCase().includes(termoBusca) || tipo.includes(termoBusca) || preco.includes(termoBusca))) {
-                
+               
                 let btnClass = 'btn-ml', btnTexto = `🛒 MERCADO LIVRE 🤝🏻`;
                 if(tipo.includes('hotmart')) { btnClass = 'btn-hotmart'; btnTexto = `🛒 HOTMART 🔥`; }
                 else if(tipo.includes('magalu')) { btnClass = 'btn-magalu'; btnTexto = `🛒 MAGALU 🙋🏻‍♂️`; }
@@ -330,21 +404,49 @@
                 else if(tipo.includes('aliexpress')) { btnClass = 'btn-aliexpress'; btnTexto = `🛒 ALIEXPRESS 👜`; }
                 else if(tipo.includes('monetizze')) { btnClass = 'btn-monetizze'; btnTexto = `🛒 MONETIZZE 💰`; }
                 else if(tipo.includes('whatsapp')) { btnClass = 'btn-whatsapp'; btnTexto = `📞 WHATSAPP 📱`; }
-                
-                html += `<div class="produto-card">
+               
+                // Adicionado: onclick no produto-card para abrir detalhes
+                html += `<div class="produto-card" onclick="abrirDetalhes('${nome}', '${desc.replace(/'/g, "\\'")}', '${foto}', '${link}', '${categoria}')" style="cursor:pointer;">
                     ${destaque === 'sim' ? '<div class="selo-destaque">EM DESTAQUE 🔥</div>' : ''}
-                    <button class="btn-ws-card" onclick="compartilharProduto('${nome}', '${link}')"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></button>
+                    <button class="btn-ws-card" onclick="event.stopPropagation(); compartilharProduto('${nome}', '${link}')"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></button>
                     <img src="${foto}" class="img-produto" onerror="this.src='https://via.placeholder.com/150'">
                     <div class="produto-cat-label">${categoria}</div>
                     <div class="produto-nome">${nome}</div>
                     <div class="produto-desc-label">${desc}</div>
                     <div class="produto-preco">${preco}</div>
-                    <a href="${link}" target="_blank" class="btn ${btnClass}">${btnTexto}</a>
+                    <a href="${link}" target="_blank" onclick="event.stopPropagation();" class="btn ${btnClass}">${btnTexto}</a>
                 </div>`;
             }
         });
         document.getElementById('vitrine').innerHTML = html;
     }
+
+    // --- NOVAS FUNÇÕES DO MODAL DE DETALHES ---
+    function abrirDetalhes(nome, info, imagem, linkZap, categoria) {
+        const modal = document.getElementById('modalInfo');
+        const conteudo = document.getElementById('conteudoDetalhes');
+        conteudo.innerHTML = `
+            <div style="text-align: center;">
+                <img src="${imagem}" style="width: 140px; height: 140px; border-radius: 20px; object-fit: cover; margin-bottom: 15px; border: 3px solid #eee;">
+                <h2 style="font-size: 26px; margin: 0; color: #44749d;">${nome}</h2>
+                <p style="background: #eef2f7; display: inline-block; padding: 5px 15px; border-radius: 10px; color: #44749d; font-weight: bold; margin-top: 10px;">✨ ${categoria}</p>
+            </div>
+            <div style="margin-top: 25px; font-size: 19px; line-height: 1.6; color: #333; text-align: left;">
+                <p><strong>📝 Descrição Completa:</strong></p>
+                <p style="white-space: pre-wrap;">${info}</p>
+            </div>
+            <a href="${linkZap}" target="_blank" class="btn-zap-modal">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="25"> Falar no WhatsApp
+            </a>
+        `;
+        modal.style.display = 'flex';
+    }
+
+    function fecharModalInfo() {
+        document.getElementById('modalInfo').style.display = 'none';
+    }
+
+ 
 
     function filtrar(cat, btn) {
         categoriaAtual = cat;
@@ -420,7 +522,12 @@
 
     carregarDados();
 </script>
-
+<div id="modalInfo" class="modal-detalhes-linkup">
+    <div class="modal-detalhes-content">
+        <span class="fechar-detalhes" onclick="fecharModalInfo()">❌</span>
+        <div id="conteudoDetalhes"></div>
+    </div>
+</div>
 </body>
 </html>
 
