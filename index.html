@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-   
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKVQ10BXWN"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XKVQ10BXWN'); </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Up App Autônomos</title>
+    <title>Lojas Link App Baby</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #c6d4e1; scroll-behavior: smooth; }
         header { background: #44749d; padding: 25px 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
@@ -27,7 +28,7 @@
         .vitrine { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
         .produto-card { background: white; border-radius: 20px; padding: 12px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; position: relative; }
         .selo-destaque { position: absolute; top: 10px; left: 10px; background: #ff0000; color: white; font-size: 0.6rem; font-weight: bold; padding: 4px 8px; border-radius: 5px; z-index: 5; }
-        .btn-ws-card { position: absolute; top: 10px; right: 10px; background: #44749d; border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
+        .btn-ws-card { position: absolute; top: 10px; right: 10px; background: #25D366; border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
         .btn-ws-card img { width: 18px; height: 18px; }
         .img-produto { width: 100%; height: 130px; object-fit: contain; border-radius: 15px; }
         .produto-cat-label { font-size: 0.6rem; text-transform: uppercase; color: #44749d; background: #eef2f7; padding: 2px 8px; border-radius: 10px; margin-top: 8px; font-weight: bold; align-self: center; }
@@ -44,8 +45,6 @@
         .btn-temu { background: #C00000; color: white; }
         .btn-aliexpress { background: #F7254E; color: white; }
         .btn-monetizze { background: #004576; color: white; }
-        .btn-whatsapp { background: #25D366; color: white; }
-
 
         #btnVoltarTopo { position: fixed; bottom: 20px; right: 20px; background: #44749d; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; display: none; z-index: 1000; cursor: pointer; }
         .subtítulo-container { height: 35px; overflow: hidden; margin: 10px 0; }
@@ -61,16 +60,16 @@
 <body>
 
 <header id="topo">
-    <div class="titulo-app">🧑🏾 Link Up App Autônomos 👩🏻</div>
+    <div class="titulo-app">🍼👶🏻 Loja Link App Baby 👶🏽🍼</div>
     <div class="subtítulo-container">
-       <div class="subtítulo-rotativo">Autônomos de Cruzeiro e Região 👩🏻🧑🏾</div>
+       <div class="subtítulo-rotativo">Tudo para o seu Bebê 🍼👶🏻👶🏽🍼</div>
        <div class="subtítulo-rotativo">Bueno Software 👨🏻</div>
         <div class="subtítulo-rotativo">Lojas Link App 🛒🛍️</div>
         <div class="subtítulo-rotativo">A maior loja de afiliados do Brasil 🛒🛍️</div>
     </div>
     <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
         <button onclick="compartilharLoja()" style="background: #25D366; color: white; border: none; border-radius: 12px; padding: 10px 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; height: 42px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18"> Compartilhar App
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18"> Compartilhar
         </button>
         <button onclick="irParaGrupo()" style="background: white; color: #44749d; border: none; border-radius: 12px; padding: 10px 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; height: 42px;">
             🚪 Mais Lojas
@@ -83,16 +82,16 @@
         <div class="banner-wrapper" id="bannerApp"></div>
     </div>
     <div class="categorias" id="grupoCategorias">
-        <button class="cat-btn active" onclick="filtrar('todos', this)"> ✨ Todos ✨</button>
-        <button class="cat-btn" onclick="filtrar('em-destaque', this)">🔥 Em Destaque 🔥</button>
-        <button class="cat-btn" onclick="filtrar('transporte', this)">🚕 Transporte 🚚</button>
-        <button class="cat-btn" onclick="filtrar('manutenção', this)">🔨 Manutenção 🧹</button>
-        <button class="cat-btn" onclick="filtrar('alimentação', this)">👩🏻‍🍳 Alimentação 🍰</button>
-        <button class="cat-btn" onclick="filtrar('estética', this)">👄 Estética 💄</button>
-        <button class="cat-btn" onclick="filtrar('cuidados', this)">👩🏻‍⚕️ Cuidados 👴🏻</button>
-        <button class="cat-btn" onclick="filtrar('diversos', this)">👨🏻‍🏫 Diversos ✂️</button>
+        <button class="cat-btn active" onclick="filtrar('todos', this)">Todos ✨</button>
+        <button class="cat-btn" onclick="filtrar('em-alta', this)">Em alta 🔥</button>
+        <button class="cat-btn" onclick="filtrar('cursos', this)">Cursos 🎓</button>
+        <button class="cat-btn" onclick="filtrar('enxoval', this)">Enxoval 🧺</button>
+        <button class="cat-btn" onclick="filtrar('higiene', this)">Higiene 🧴</button>
+        <button class="cat-btn" onclick="filtrar('quarto', this)">Quarto 🛏️</button>
+        <button class="cat-btn" onclick="filtrar('passeio', this)">Passeio 🛒</button>
+        <button class="cat-btn" onclick="filtrar('alimentação', this)">Alimentação 🥣</button>
     </div>
-    <input type="text" id="inputBusca" class="busca-input" placeholder="🔍 Autônomo, Serviço ou Cidade..." onkeyup="executarBusca()">
+    <input type="text" id="inputBusca" class="busca-input" placeholder="🔍 Produto, Loja ou Preço..." onkeyup="executarBusca()">
     <div id="vitrine" class="vitrine"></div>
 </div>
 
@@ -104,10 +103,9 @@
     let categoriaAtual = 'todos';
 
     // LINK ATUALIZADO AQUI
-    const sheetId = '1FvOMPzfXvC_-nfG0Vj_BoH6_qWAkwGFgED_hknT_a9Q';
-const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=loja`;
+    const sheetId = '1tPuavQtvVf147OX05Y4q8DIo5_HdtkmZelq4PCXq5eg';
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=loja`;
 
- 
     // LISTA MANUAL - COLOQUE O LINK ENTRE AS ASPAS EM link: ""
     const segmentosLojas = [
         { nome: "Lojas Link App: A maior loja de afiliados do Brasil", emoji: "🛒", link: "" },
@@ -218,16 +216,15 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
                 else if(tipo.includes('temu')) { btnClass = 'btn-temu'; btnTexto = `🛒 TEMU 👔`; }
                 else if(tipo.includes('aliexpress')) { btnClass = 'btn-aliexpress'; btnTexto = `🛒 ALIEXPRESS 👜`; }
                 else if(tipo.includes('monetizze')) { btnClass = 'btn-monetizze'; btnTexto = `🛒 MONETIZZE 💰`; }
-                else if(tipo.includes('whatsapp')) { btnClass = 'btn-whatsapp'; btnTexto = `📞 WHATSAPP 📱`; }
                
                 html += `<div class="produto-card">
-                    ${destaque === 'sim' ? '<div class="selo-destaque">EM DESTAQUE 🔥</div>' : ''}
+                    ${destaque === 'sim' ? '<div class="selo-destaque">MAIS VENDIDO 🔥</div>' : ''}
                     <button class="btn-ws-card" onclick="compartilharProduto('${nome}', '${link}')"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></button>
                     <img src="${foto}" class="img-produto" onerror="this.src='https://via.placeholder.com/150'">
                     <div class="produto-cat-label">${categoria}</div>
                     <div class="produto-nome">${nome}</div>
                     <div class="produto-desc-label">${desc}</div>
-                    <div class="produto-preco">${preco}</div>
+                    <div class="produto-preco">R$ ${preco}</div>
                     <a href="${link}" target="_blank" class="btn ${btnClass}">${btnTexto}</a>
                 </div>`;
             }
@@ -245,23 +242,21 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
     function executarBusca() { mostrarProdutos(document.getElementById('inputBusca').value); }
 
     async function compartilharProduto(nome, link) {
-        const textoProfissional = `Olha o contato do(a) ${nome} que encontrei no Link-Up! 🚀`;
         if (navigator.share) {
-            try { await navigator.share({ title: 'Link-Up Profissional', text: textoProfissional, url: link }); } catch (err) {}
+            try { await navigator.share({ title: nome, text: `Olha isso: ${nome}`, url: link }); } catch (err) {}
         } else {
-            navigator.clipboard.writeText(`${textoProfissional} ${link}`);
-            alert("Contato copiado! ✅");
+            navigator.clipboard.writeText(`${nome} ${link}`);
+            alert("Link copiado!");
         }
     }
 
     async function compartilharLoja() {
         const urlLoja = window.location.href;
-        const textoApp = 'Olha que top esse app com os melhores profissionais de Cruzeiro! 🛠️🚀';
         if (navigator.share) {
-            try { await navigator.share({ title: 'Link-Up App', text: textoApp, url: urlLoja }); } catch (err) {}
+            try { await navigator.share({ title: 'Loja Link App Pet', text: 'Confira as melhores ofertas!', url: urlLoja }); } catch (err) {}
         } else {
-            navigator.clipboard.writeText(`${textoApp} ${urlLoja}`);
-            alert("Link do Link-Up copiado! ✅");
+            navigator.clipboard.writeText(`Confira a Loja Link App Pet: ${urlLoja}`);
+            alert("Link da loja copiado!");
         }
     }
 
@@ -291,129 +286,6 @@ const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:j
 
     carregarDados();
 </script>
-<style>
-    /* Botão flutuante - Subido para 110px para não bater no botão de topo */
-    .btn-anuncie-linkup {
-        position: fixed; bottom: 110px; right: 20px;
-        background-color: #ff8c00; color: white;
-        width: 85px; height: 85px; border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 13px; font-weight: bold; text-align: center;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.4); cursor: pointer;
-        z-index: 999; line-height: 1.1; border: 2px solid white;
-    }
-    /* Janela do Modal */
-    .modal-linkup {
-        display:none; position: fixed; top: 50%; left: 50%;
-        transform: translate(-50%, -50%); width: 90%; max-width: 450px;
-        background: white; border-radius: 20px; z-index: 10000;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow-y: auto;
-        max-height: 90vh; font-family: sans-serif; padding: 20px;
-    }
-    .overlay-linkup {
-        display:none; position: fixed; top:0; left:0; width:100%; height:100%;
-        background:rgba(0,0,0,0.7); z-index: 9998;
-    }
-    .input-linkup {
-        width: 100%; padding: 12px; margin-bottom: 10px;
-        border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box;
-    }
-    .btn-plano {
-        width:100%; border:2px solid #eee; padding:15px; margin-bottom:12px;
-        border-radius:12px; background:white; cursor:pointer; text-align: left;
-        display: flex; align-items: center; gap: 10px; justify-content: space-between;
-    }
-</style>
-
-<div class="btn-anuncie-linkup" onclick="abrirCadastro()">ANUNCIE<br>AQUI</div>
-<div id="overlay" class="overlay-linkup" onclick="fecharModal()"></div>
-
-<div id="modalCadastro" class="modal-linkup">
-    <div onclick="fecharModal()" style="position: absolute; top: 10px; right: 15px; font-size: 26px; color: #999; cursor: pointer; font-weight: bold;">&times;</div>
-
-    <div id="etapa1" style="text-align: center; padding-top: 15px;">
-        <h2 style="color: #44749d;">Deseja oferecer seus serviços no aplicativo? 💼</h2>
-        <button onclick="irParaEtapa(2)" style="width: 100%; background: #44749d; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-bottom: 10px;">SIM, QUERO ANUNCIAR</button>
-        <button onclick="fecharModal()" style="width: 100%; background: #eee; color: #666; border: none; padding: 10px; border-radius: 10px; cursor: pointer;">NÃO, SOU APENAS CLIENTE</button>
-    </div>
-
-    <div id="etapa2" style="display:none; padding-top: 10px;">
-        <h3 style="color: #44749d;">Cadastro Profissional 📝</h3>
-        <div style="background: #f9f9f9; padding: 8px; font-size: 11px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ddd;">
-            Autorizo uso de imagem/dados e aviso se mudar de WhatsApp.
-        </div>
-        <label style="font-size: 13px; margin-bottom: 10px; display: block;"><input type="checkbox" id="aceitoTermos"> Eu aceito os termos</label>
-       
-        <input type="text" id="nome" placeholder="👤 Nome Completo" class="input-linkup">
-        <input type="text" id="apelido" placeholder="🏷️ Apelido/Nome do Negócio" class="input-linkup">
-        <input type="text" id="funcao" placeholder="🛠️ O que você faz?" class="input-linkup">
-        <input type="tel" id="whatsapp" placeholder="📱 WhatsApp com DDD" class="input-linkup">
-        <input type="text" id="bairro" placeholder="📍 Seu Bairro/Cidade" class="input-linkup">
-       
-        <button onclick="irParaEtapa(3)" style="width: 100%; background: #ff8c00; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer;">VER PLANOS ➡️</button>
-    </div>
-
-    <div id="etapa3" style="display:none; padding-top: 10px;">
-        <h3 style="text-align:center; color: #44749d;">Escolha seu Plano ✨</h3>
-       
-        <div class="btn-plano" onclick="finalizar('Bronze')" style="border-color: #cd7f32;">
-            <div style="display:flex; align-items:center; gap:10px;">
-                <span style="font-size: 24px;">🥉</span>
-                <div><b>BRONZE</b><br><small>Card Padrão</small></div>
-            </div>
-            <div style="font-weight:bold; color:#cd7f32;">R$ 2,00</div>
-        </div>
-
-        <div class="btn-plano" onclick="finalizar('Prata')" style="border-color: #c0c0c0;">
-            <div style="display:flex; align-items:center; gap:10px;">
-                <span style="font-size: 24px;">🥈</span>
-                <div><b>PRATA 🔥</b><br><small>Faixa "Em Alta"</small></div>
-            </div>
-            <div style="font-weight:bold; color:#666;">R$ 5,00</div>
-        </div>
-
-        <div class="btn-plano" onclick="finalizar('Ouro')" style="border-color: #ffd700; background: #fffdf0;">
-            <div style="display:flex; align-items:center; gap:10px;">
-                <span style="font-size: 24px;">🥇</span>
-                <div><b>OURO 💎</b><br><small>Destaque Total</small></div>
-            </div>
-            <div style="font-weight:bold; color:#b8860b;">R$ 10,00</div>
-        </div>
-
-        <p style="font-size: 11px; color: #999; text-align: center;">*Pagamento único via PIX após o envio.</p>
-        <button onclick="irParaEtapa(2)" style="background:none; border:none; color:#999; cursor:pointer; width:100%; font-size:12px;">← Voltar</button>
-    </div>
-</div>
-
-<script>
-    function abrirCadastro() { document.getElementById('modalCadastro').style.display='block'; document.getElementById('overlay').style.display='block'; }
-    function fecharModal() { document.getElementById('modalCadastro').style.display='none'; document.getElementById('overlay').style.display='none'; }
-    function irParaEtapa(n) {
-        if(n==3 && !document.getElementById('aceitoTermos').checked) return alert("Por favor, aceite os termos.");
-        document.getElementById('etapa1').style.display='none'; document.getElementById('etapa2').style.display='none'; document.getElementById('etapa3').style.display='none';
-        document.getElementById('etapa'+n).style.display='block';
-    }
-    function finalizar(plano) {
-        let msg = `Olá Gustavo! Novo cadastro no Link-Up.\n\n` +
-                  `🏆 *PLANO: ${plano.toUpperCase()}*\n` +
-                  `👤 Nome: ${document.getElementById('nome').value}\n` +
-                  `🏷️ Apelido: ${document.getElementById('apelido').value}\n` +
-                  `🛠️ Serviço: ${document.getElementById('funcao').value}\n` +
-                  `📱 Zap: ${document.getElementById('whatsapp').value}\n` +
-                  `📍 Bairro: ${document.getElementById('bairro').value}\n\n` +
-                  `📸 *ENVIE SUA FOTO ABAIXO!*`;
-       
-        // --- COLOQUE SEU NÚMERO ABAIXO ---
-        const meuZap = "5512992448264";
-        window.open(`https://wa.me/${meuZap}?text=${encodeURIComponent(msg)}`);
-       
-        alert("Enviado! Agora me mande a FOTO e o COMPROVANTE aqui no WhatsApp.");
-        fecharModal();
-    }
-</script>
-
- 
-
 </body>
 </html>
 
